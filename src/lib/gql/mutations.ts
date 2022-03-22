@@ -1,4 +1,9 @@
-import { CreateCircleParam, IApiCircle, UpdateUsersParam } from '../../types';
+import {
+  CreateCircleParam,
+  IApiCircle,
+  NominateUserParam,
+  UpdateUsersParam,
+} from '../../types';
 
 import { $, ValueTypes } from './__generated__/zeus';
 import { client } from './client';
@@ -190,4 +195,26 @@ export const adminUpdateUser = async (
     ],
   });
   return adminUpdateUser;
+};
+
+export const createNominee = async (
+  circleId: number,
+  params: NominateUserParam
+) => {
+  const { createNominee } = await client.mutate({
+    createNominee: [
+      {
+        payload: {
+          circle_id: circleId,
+          name: params.name,
+          description: params.description,
+          address: params.address,
+        },
+      },
+      {
+        id: true,
+      },
+    ],
+  });
+  return createNominee;
 };

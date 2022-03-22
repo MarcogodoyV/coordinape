@@ -18,7 +18,6 @@ import {
   PutCirclesParam,
   PutUsersParam,
   UpdateCreateEpochParam,
-  NominateUserParam,
   IApiNominee,
   IApiFullCircle,
 } from 'types';
@@ -197,16 +196,6 @@ export class APIService {
 
   getDiscordWebhook = async (circleId: number): Promise<any> => {
     const response = await this.axios.get(`/v2/${circleId}/admin/webhook`);
-    return response.data;
-  };
-
-  nominateUser = async (
-    circleId: number,
-    params: NominateUserParam
-  ): Promise<IApiNominee> => {
-    const response = await this.axios.post(`/v2/${circleId}/nominees`, {
-      data: JSON.stringify(params),
-    });
     return response.data;
   };
 
